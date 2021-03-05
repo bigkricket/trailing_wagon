@@ -18,7 +18,7 @@
         ixy="-4.785E-5"
         ixz="-0.02338"
         iyy="0.9316"
-        iyz="0.-3.425E-5"
+        iyz="-3.425E-5"
         izz="1.223" />
     </inertial>
     <visual>
@@ -48,10 +48,10 @@
 <xacro:robot_wheel prefix="rear_right"/>
 
 <!-- defining wheel joints -->
-<xacro:front_wheel_joint prefix="front_left" rotate="0 0 1.57079632679" origin="0.261 .222 -.19"/>
-<xacro:front_wheel_joint prefix="front_right" rotate="0 0 -1.57079632679" origin=".261 -.22 -.19"/>
-<xacro:wheel_joint prefix="rear_left" rotate="0 0 1.57079632679" origin="-.26 .222 -.18" axis="0 1 0"/>
-<xacro:wheel_joint prefix="rear_right" rotate="0 0 -1.57079632679" origin="-.26 -.22 -.18" axis="0 -1 0"/>
+<xacro:front_wheel_joint prefix="front_left" rotate="0 0 1.57079632679" origin="0 .222 -.07"/>
+<xacro:front_wheel_joint prefix="front_right" rotate="0 0 -1.57079632679" origin="0 -.22 -.07"/>
+<xacro:wheel_joint prefix="rear_left" rotate="0 0 1.57079632679" origin="-.26 .222 -.18" axis="1 0 0"/>
+<xacro:wheel_joint prefix="rear_right" rotate="0 0 -1.57079632679" origin="-.26 -.22 -.18" axis="1 0 0"/>
 
 <!-- defining front joint -->
 <xacro:front_joint rotate="0 0 0" origin=".262 0 -0.12"/>

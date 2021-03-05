@@ -19,7 +19,7 @@
         <updateRate>1000.0</updateRate>
         <leftJoint>rear_left_wheel_joint</leftJoint>
         <rightJoint>rear_right_wheel_joint</rightJoint>
-        <wheelSeparation>0.426</wheelSeparation>
+        <wheelSeparation>0.451273</wheelSeparation>
         <wheelDiameter>0.26</wheelDiameter>
         <wheelTorque>10</wheelTorque>
         <publishTf>1</publishTf>
