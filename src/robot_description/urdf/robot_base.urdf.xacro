@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="robot_base" >
+
+<xacro:include filename="$(find robot_description)/urdf/robot_essentials.xacro" />
+<xacro:include filename="$(find robot_description)/urdf/gazebo_essentials_base.xacro" />
+
+<!-- setting up base link -->
+  <link name="base_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="14.76" />
+      <inertia
+        ixx="0.3272"
+        ixy="-4.785E-5"
+        ixz="-0.02338"
+        iyy="0.9316"
+        iyz="0.-3.425E-5"
+        izz="1.223" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot_description/meshes/base.stl" />
+      </geometry>
+      <material name="">
+        <color rgba=".79216 0.81961 0.9333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot_description/meshes/base.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+<!-- defining front -->
+<xacro:robot_front />
+
+<!-- defining wheels -->
+<xacro:robot_wheel prefix="front_left"/>
+<xacro:robot_wheel prefix="front_right"/>
+<xacro:robot_wheel prefix="rear_left"/>
+<xacro:robot_wheel prefix="rear_right"/>
+
+<!-- defining wheel joints -->
+<xacro:front_wheel_joint prefix="front_left" rotate="0 0 1.57079632679" origin="0.261 .222 -.19"/>
+<xacro:front_wheel_joint prefix="front_right" rotate="0 0 -1.57079632679" origin=".261 -.22 -.19"/>
+<xacro:wheel_joint prefix="rear_left" rotate="0 0 1.57079632679" origin="-.26 .222 -.18" axis="0 1 0"/>
+<xacro:wheel_joint prefix="rear_right" rotate="0 0 -1.57079632679" origin="-.26 -.22 -.18" axis="0 -1 0"/>
+
+<!-- defining front joint -->
+<xacro:front_joint rotate="0 0 0" origin=".262 0 -0.12"/>
+
+<!-- declaring wheel actuators -->
+<!-- <xacro:base_transmission prefix="front_left"/>
+<xacro:base_transmission prefix="front_right"/> -->
+<xacro:base_transmission prefix="rear_left"/>
+<xacro:base_transmission prefix="rear_right"/>
+
+<!-- declaring front actuator -->
+<xacro:front_transmission/>
+
+<!-- wheel friction -->
+<xacro:wheel_friction prefix="front_left"/>
+<xacro:wheel_friction prefix="front_right"/>
+<xacro:wheel_friction prefix="rear_left"/>
+<xacro:wheel_friction prefix="rear_right"/>
+
+</robot>

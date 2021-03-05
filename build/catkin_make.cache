@@ -1,0 +1,2 @@
+
+-DCATKIN_DEVEL_PREFIX=/home/rubaduben/github_robots/trailing_wagon/devel -DCMAKE_INSTALL_PREFIX=/home/rubaduben/github_robots/trailing_wagon/install -G Unix Makefiles

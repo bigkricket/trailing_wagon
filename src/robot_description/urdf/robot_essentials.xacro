@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="robot_essentials" >
+
+<!-- defining wheels -->
+<xacro:macro name="robot_wheel" params="prefix">
+  <link name="${prefix}_wheel">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="13.17189718" />
+      <inertia
+        ixx="0.146268139"
+        ixy="7.31599134E-7"
+        ixz="-1.0973987E-7"
+        iyy="0.0977028878"
+        iyz="-3.65799567E-8"
+        izz="0.0977022293" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot_description/meshes/wheel.stl" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.9333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot_description/meshes/wheel.stl" />
+      </geometry>
+    </collision>
+  </link>
+</xacro:macro>
+
+<!-- defining front axle -->
+<xacro:macro name="robot_front" >
+  <link name="front_axle">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.732012" />
+      <inertia
+        ixx="0.01491"
+        ixy="2.2876E-8"
+        ixz="-1.34989E-7"
+        iyy="0.003029"
+        iyz="-1.375E-5"
+        izz=".01197" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot_description/meshes/front.stl" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.9333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot_description/meshes/front.stl" />
+      </geometry>
+    </collision>
+  </link>
+</xacro:macro>
+
+<!-- defining front joints connected to base -->
+<xacro:macro name="front_joint" params="rotate origin">
+  <joint name="front_axle_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link ="base_link"/>
+    <child link ="front_axle"/>
+    <origin rpy ="${rotate}" xyz="${origin}"/>
+  </joint>
+</xacro:macro>
+
+<!-- defining wheel joints connected to base -->
+<xacro:macro name="wheel_joint" params="prefix rotate origin axis">
+  <joint name="${prefix}_wheel_joint" type="continuous">
+    <axis xyz="${axis}"/>
+    <parent link ="base_link"/>
+    <child link ="${prefix}_wheel"/>
+    <origin rpy ="${rotate}" xyz="${origin}"/>
+  </joint>
+</xacro:macro>
+
+<!-- defining wheel joints connected to front axle -->
+<xacro:macro name="front_wheel_joint" params="prefix rotate origin">
+  <joint name="${prefix}_wheel_joint" type="continuous">
+    <axis xyz="1 0 0"/>
+    <parent link ="front_axle"/>
+    <child link ="${prefix}_wheel"/>
+    <origin rpy ="${rotate}" xyz="${origin}"/>
+  </joint>
+</xacro:macro>
+
+<!-- defining transmitions -->
+<xacro:macro name="base_transmission" params="prefix ">
+
+<transmission name="${prefix}_wheel_trans" type="SimpleTransmission">
+  <type>transmission_interface/SimpleTransmission</type>
+  <actuator name="${prefix}_wheel_motor">
+   <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+   <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+  <joint name="${prefix}_wheel_joint">
+   <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+</transmission>
+
+</xacro:macro>
+
+<!-- defining front axle transmission -->
+<xacro:macro name="front_transmission">
+<transmission name="front_trans" type="SimpleTransmission">
+  <type>transmission_interface/SimpleTransmission</type>
+  <actuator name="front_motor">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+  <joint name="front_joint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+  </joint>
+</transmission>
+</xacro:macro>
+
+</robot>
