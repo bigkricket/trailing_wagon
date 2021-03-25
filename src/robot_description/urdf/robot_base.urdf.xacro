@@ -51,7 +51,7 @@
 <xacro:front_wheel_joint prefix="front_left" rotate="0 0 1.57079632679" origin="0 .222 -.07"/>
 <xacro:front_wheel_joint prefix="front_right" rotate="0 0 -1.57079632679" origin="0 -.22 -.07"/>
 <xacro:wheel_joint prefix="rear_left" rotate="0 0 1.57079632679" origin="-.26 .222 -.18" axis="1 0 0"/>
-<xacro:wheel_joint prefix="rear_right" rotate="0 0 -1.57079632679" origin="-.26 -.22 -.18" axis="1 0 0"/>
+<xacro:wheel_joint prefix="rear_right" rotate="0 0 -1.57079632679" origin="-.26 -.22 -.18" axis="-1 0 0"/>
 
 <!-- defining front joint -->
 <xacro:front_joint rotate="0 0 0" origin=".262 0 -0.12"/>
