@@ -71,4 +71,9 @@
 <xacro:wheel_friction prefix="rear_left"/>
 <xacro:wheel_friction prefix="rear_right"/>
 
+<!-- camera joint -->
+<xacro:camera_join/>
+<xacro:camera/>
+<xacro:camera_vision/>
+
 </robot>
