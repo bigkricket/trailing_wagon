@@ -28,3 +28,5 @@ from sensor_msgs.msg        import Image
 from geometry_msgs.msg      import Point
 from cv_bridge              import CvBridge, CvBridgeError
 from include.point_detector import *
+
+added in new line
